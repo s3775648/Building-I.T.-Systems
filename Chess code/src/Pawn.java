@@ -15,18 +15,13 @@ public class Pawn extends Piece
         if (isFirstMove && isWhite())
         {
             move = new int[][]
-                    {
-                            {1, 0},
-                            {2, 0}};
-
+                    {{1, 0}, {2, 0}};
             return move;
         }
         else if (isFirstMove && !isWhite())
         {
             move = new int[][]
-                    {
-                            {-1,0},
-                            {-2,0}};
+                    {{-1,0}, {-2,0}};
             return move;
         }
         else if (isWhite())
