@@ -11,30 +11,30 @@ public class Pawn extends Piece
     @Override
     public int[][] canMove()
     {
-        int[][] move;
+        int[][] moves;
         if (isFirstMove && isWhite())
         {
-            move = new int[][]
-                    {{1, 0}, {2, 0}};
-            return move;
+            moves = new int[][]
+                    {{1,0}, {2,0}};
+            return moves;
         }
         else if (isFirstMove && !isWhite())
         {
-            move = new int[][]
+            moves = new int[][]
                     {{-1,0}, {-2,0}};
-            return move;
+            return moves;
         }
         else if (isWhite())
         {
-            move = new int[][]
+            moves = new int[][]
                     {{1,0}};
-            return move;
+            return moves;
         }
         else
         {
-            move = new int[][]
+            moves = new int[][]
                     {{-1,0}};
-            return move;
+            return moves;
         }
     }
 }

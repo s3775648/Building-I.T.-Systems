@@ -1,0 +1,37 @@
+public class King extends Piece
+{
+    private boolean hasCastled;
+
+    public King(boolean isWhite)
+    {
+        super(isWhite);
+        this.hasCastled = false;
+    }
+
+    public boolean hasCastled()
+    {
+        return hasCastled;
+    }
+
+    public void setHasCastled(boolean hasCastled)
+    {
+        this.hasCastled = hasCastled;
+    }
+
+    @Override
+    public int[][] canMove()
+    {
+        int[][] moves;
+        moves = new int[][] {
+                {1,0},       // North
+                {-1,0},      // South
+                {0,1},       // East
+                {0,-1},      // West
+                {1,1},       // North-East
+                {1,-1},      // North-West
+                {-1,1},      // South-East
+                {-1,-1}      // South-West
+                };
+        return moves;
+    }
+}
