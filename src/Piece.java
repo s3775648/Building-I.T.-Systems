@@ -12,6 +12,10 @@ public abstract class Piece
         this.isKilled = false;
     }
 
+    /**
+     * [x][y] board coordinates.
+     * @return, possible moves.
+     */
     public abstract int[][] canMove();
 
     public boolean isKilled()
@@ -29,8 +33,4 @@ public abstract class Piece
         return isWhite;
     }
 
-    public void setWhite(boolean white)
-    {
-        isWhite = white;
-    }
 }
