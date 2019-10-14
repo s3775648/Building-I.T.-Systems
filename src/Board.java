@@ -25,15 +25,32 @@ public class Board extends JPanel {
 		setLayout(new GridLayout(8,8));
 		for(int y = 0; y < tiles.length; y++) {
 			for(int x = 0; x < tiles[y].length; x++) {
+				//Creates Tile variable as the below assignments are wrapped in an if
+				//state which prevents add() and tilesArray[y][x]  from accessing i if 
+				//Not created prior
+				
 				Tile i;
-				//Determine if tile is white, black, a space (Would be an added feature)
-				//Determined via the integer in the array, 1 = white, 0 = black, 2 = space
+				
+				//Cheap check to see if pieces are top or bottom of board, passes through
+				//'false' or 'true' to allow creation of pieces on tiles
+				
+				//'tiles' and 'pieceNumbers' arrays are passed through constructor of
+				//board and are housed in the Game.java file
+				
 				if(y > 4) {
 					i = new Tile(tiles[y][x], y, x, pieceNumbers[y][x], true);
 				} else {
 					i = new Tile(tiles[y][x], y, x, pieceNumbers[y][x], false);
 				}
+				
+				//Add tile Panel to Board panel
 				add(i);
+				
+				//Inserts Tile into array at construction, means we can access each
+				//Tile using this array 
+				
+				//EXAMPLE: If we want tile at (1, 2) - We can call tilesArray[1][2]
+				
 				tilesArray[y][x] = i;
 				
 			}
