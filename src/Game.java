@@ -29,10 +29,20 @@ public class Game extends JPanel {
 		{0,1,0,1,0,1,0,1}
 	};
 	
+	private final int[][] pieceNumbers = new int[][] {
+		{2, 3, 4, 5, 6, 4, 3, 2},
+		{1, 1, 1, 1, 1, 1, 1, 1},
+		{0, 0, 0, 0, 0, 0, 0, 0},
+		{0, 0, 0, 0, 0, 0, 0, 0},
+		{0, 0, 0, 0, 0, 0, 0, 0},
+		{0, 0, 0, 0, 0, 0, 0, 0},
+		{1, 1, 1, 1, 1, 1, 1, 1},
+		{2, 3, 4, 6, 5, 4, 3, 2}
+	};
 	//Default constructor
 	public Game() {
 		//
-		Board b = new Board(TILES_X, TILES_Y, TILE_WIDTH, TILE_HEIGHT, tiles);
+		Board b = new Board(TILES_X, TILES_Y, TILE_WIDTH, TILE_HEIGHT, tiles, pieceNumbers);
 		b.setBounds(BOARD_BORDER_WIDTH, BOARD_BORDER_HEIGHT, (TILES_X * TILE_WIDTH), (TILES_Y * TILE_HEIGHT));
 		JLayeredPane layers = new JLayeredPane();
 		layers.setPreferredSize(new Dimension(INITIAL_WIDTH, INITIAL_HEIGHT));

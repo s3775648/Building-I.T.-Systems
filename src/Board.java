@@ -11,7 +11,7 @@ public class Board extends JPanel {
 	private final int[][] tileSpotArray;
 	private Tile[][] tilesArray;
 	
-	public Board(int tiles_x, int tiles_y, int tile_width, int tile_height, int[][] tiles) {
+	public Board(int tiles_x, int tiles_y, int tile_width, int tile_height, int[][] tiles, int[][] pieceNumbers) {
 		super();
 		this.tilesArray = new Tile[8][8];
 		this.tileSpotArray = tiles;
@@ -25,9 +25,14 @@ public class Board extends JPanel {
 		setLayout(new GridLayout(8,8));
 		for(int y = 0; y < tiles.length; y++) {
 			for(int x = 0; x < tiles[y].length; x++) {
+				Tile i;
 				//Determine if tile is white, black, a space (Would be an added feature)
 				//Determined via the integer in the array, 1 = white, 0 = black, 2 = space
-				Tile i = new Tile(tiles[y][x], y, x);
+				if(y > 4) {
+					i = new Tile(tiles[y][x], y, x, pieceNumbers[y][x], true);
+				} else {
+					i = new Tile(tiles[y][x], y, x, pieceNumbers[y][x], false);
+				}
 				add(i);
 				tilesArray[y][x] = i;
 				
