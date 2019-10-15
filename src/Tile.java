@@ -4,6 +4,7 @@ public class Tile extends JPanel {
 	
 	private boolean isWhite;
 	Piece piece;
+	
 	public Tile(int colour, int indexY, int indexX, int startPiece, boolean isWhite) {
 		super();
 		this.isWhite = isWhite;
