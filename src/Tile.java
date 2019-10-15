@@ -1,3 +1,5 @@
+import java.awt.Graphics;
+
 import javax.swing.JPanel;
 
 public class Tile extends JPanel {
@@ -17,6 +19,11 @@ public class Tile extends JPanel {
 		} else {
 			return false;
 		}
+	}
+	
+	@Override
+	public void paintComponent(Graphics g) {
+		
 	}
 	
 	private void createPiece(int pieceNumber) {
