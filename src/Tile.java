@@ -1,16 +1,33 @@
+import java.awt.Color;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
 public class Tile extends JPanel {
 	
-	private boolean isWhite;
+	//When !clicked
+	private Color lightTileColour = new Color(255, 255, 102);
+	private Color darkTileColour = new Color(153, 76, 0);
+	
+	//When clicked
+	private Color lightTileColourSelected = new Color(255, 255, 51);
+	private Color darkTileColourSelected = new Color(204, 102, 0);
+	
+	private boolean isWhite; //Piece
+	private boolean isLightTile; //Tile
+	private boolean selected = false;
 	Piece piece;
 	
 	public Tile(int colour, int indexY, int indexX, int startPiece, boolean isWhite) {
 		super();
 		this.isWhite = isWhite;
 		createPiece(startPiece);
+		if(colour == 1) {
+			isLightTile = true;
+		} else {
+			isLightTile = false;
+		}
+		//System.out.println("Created tile.");
 	}
 	
 	public boolean isWhite() {
@@ -21,8 +38,39 @@ public class Tile extends JPanel {
 		}
 	}
 	
+	public boolean isLightTile() {
+		if(this.isLightTile) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean isSelected() {
+		if(selected) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	@Override
 	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		if(isLightTile()) {
+			if(isSelected()) {
+				g.setColor(lightTileColourSelected);
+			} else {
+				g.setColor(lightTileColour);
+			}
+		} else {
+			if(isSelected()) {
+				g.setColor(darkTileColourSelected);
+			} else {
+				g.setColor(darkTileColour);
+			}
+		}
+		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		
 	}
 	
