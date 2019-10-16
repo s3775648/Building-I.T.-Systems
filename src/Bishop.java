@@ -33,7 +33,7 @@ public class Bishop extends Piece
         }
         else
         {
-            image = ImageIO.read(new File("BlackBishop.png"));
+            image = ImageIO.read(getClass().getResource("Pieces/Final Pieces/Black Set/BlackBishop.png"));
             return image;
         }
     }

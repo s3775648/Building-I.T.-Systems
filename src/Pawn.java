@@ -54,7 +54,7 @@ public class Pawn extends Piece
         }
         else
         {
-            image = ImageIO.read(new File("BlackPawn.png"));
+            image = ImageIO.read(getClass().getResource("Pieces/Final Pieces/Black Set/BlackPawn.png"));
             return image;
         }
     }

@@ -1,5 +1,7 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 import javax.swing.JPanel;
 
@@ -38,6 +40,14 @@ public class Tile extends JPanel {
 		}
 	}
 	
+	public BufferedImage getPieceImage() throws IOException {
+		return getPiece().pieceImage();
+	}
+	
+	public Piece getPiece() {
+		return this.piece;
+	}
+	
 	public boolean isLightTile() {
 		if(this.isLightTile) {
 			return true;
@@ -71,6 +81,14 @@ public class Tile extends JPanel {
 			}
 		}
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
+		if(getPiece() != null) {
+			try {
+				g.drawImage(getPieceImage(), 0, 0, this.getWidth(), this.getHeight(), null);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		
 	}
 	
