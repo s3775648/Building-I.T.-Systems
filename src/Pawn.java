@@ -1,3 +1,8 @@
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
 public class Pawn extends Piece
 {
     private boolean isFirstMove;
@@ -35,6 +40,22 @@ public class Pawn extends Piece
             moves = new int[][]
                     {{-1,0}};
             return moves;
+        }
+    }
+
+    @Override
+    public BufferedImage pieceImage() throws IOException
+    {
+        BufferedImage image;
+        if (isWhite())
+        {
+            image = ImageIO.read(new File("WhitePawn.png"));
+            return image;
+        }
+        else
+        {
+            image = ImageIO.read(new File("BlackPawn.png"));
+            return image;
         }
     }
 }

@@ -1,3 +1,8 @@
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
 public class Knight extends Piece
 {
     public Knight(boolean isWhite)
@@ -19,7 +24,21 @@ public class Knight extends Piece
                 {-1,2}, // South-East 2
         };
         return moves;
+    }
 
-
+    @Override
+    public BufferedImage pieceImage() throws IOException
+    {
+        BufferedImage image;
+        if (isWhite())
+        {
+            image = ImageIO.read(new File("WhiteKnight.png"));
+            return image;
+        }
+        else
+        {
+            image = ImageIO.read(new File("BlackKnight.png"));
+            return image;
+        }
     }
 }

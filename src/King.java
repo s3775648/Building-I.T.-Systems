@@ -1,3 +1,8 @@
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
 public class King extends Piece
 {
     private boolean hasCastled;
@@ -33,5 +38,21 @@ public class King extends Piece
                 {-1,-1}      // South-West
                 };
         return moves;
+    }
+
+    @Override
+    public BufferedImage pieceImage() throws IOException
+    {
+        BufferedImage image;
+        if (isWhite())
+        {
+            image = ImageIO.read(new File("WhiteKing.png"));
+            return image;
+        }
+        else
+        {
+            image = ImageIO.read(new File("BlackKing.png"));
+            return image;
+        }
     }
 }

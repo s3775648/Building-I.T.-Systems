@@ -1,3 +1,6 @@
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
 /**
  * Abstract class to represent common functionality of all chess pieces.
  */
@@ -17,6 +20,8 @@ public abstract class Piece
      * @return, possible moves.
      */
     public abstract int[][] canMove();
+
+    public abstract BufferedImage pieceImage() throws IOException;
 
     public boolean isKilled()
     {
