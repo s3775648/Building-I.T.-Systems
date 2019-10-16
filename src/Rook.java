@@ -1,6 +1,5 @@
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
 public class Rook extends Piece
@@ -27,12 +26,12 @@ public class Rook extends Piece
         BufferedImage image;
         if (isWhite())
         {
-            image = ImageIO.read(new File("WhiteRook.png"));
+            image = ImageIO.read(getClass().getResource("Pieces/Final Pieces/White set/WhiteRook.png"));
             return image;
         }
         else
         {
-            image = ImageIO.read(new File("BlackRook.png"));
+            image = ImageIO.read(getClass().getResource("Pieces/Final Pieces/Black set/BlackRook.png"));
             return image;
         }
     }

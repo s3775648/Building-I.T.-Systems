@@ -1,6 +1,5 @@
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
 public class Bishop extends Piece
@@ -28,12 +27,12 @@ public class Bishop extends Piece
         BufferedImage image;
         if (isWhite())
         {
-            image = ImageIO.read(new File("WhiteBishop.png"));
+            image = ImageIO.read(getClass().getResource("Pieces/Final Pieces/White set/WhiteBishop.png"));
             return image;
         }
         else
         {
-            image = ImageIO.read(getClass().getResource("Pieces/Final Pieces/Black Set/BlackBishop.png"));
+            image = ImageIO.read(getClass().getResource("Pieces/Final Pieces/Black set/BlackBishop.png"));
             return image;
         }
     }
