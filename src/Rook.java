@@ -2,16 +2,14 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class Rook extends Piece
-{
-    public Rook(boolean isWhite)
-    {
+public class Rook extends Piece {
+
+    public Rook(boolean isWhite) {
         super(isWhite, "Rook");
     }
 
     @Override
-    public int[][] canMove()
-    {
+    public int[][] canMove() {
         int[][] moves = new int[][]{
                 {1,0}, {2,0}, {3,0}, {4,0}, {5,0}, {6,0}, {7,0},         //North
                 {-1,0}, {-2,0}, {-3,0}, {-4,0}, {-5,0}, {-6,0}, {-7,0},  //South
@@ -21,16 +19,13 @@ public class Rook extends Piece
     }
 
     @Override
-    public BufferedImage pieceImage() throws IOException
-    {
+    public BufferedImage pieceImage() throws IOException {
         BufferedImage image;
-        if (isWhite())
-        {
+
+        if (isWhite()) {
             image = ImageIO.read(getClass().getResource("Pieces/Final Pieces/White set/WhiteRook.png"));
             return image;
-        }
-        else
-        {
+        } else {
             image = ImageIO.read(getClass().getResource("Pieces/Final Pieces/Black set/BlackRook.png"));
             return image;
         }
