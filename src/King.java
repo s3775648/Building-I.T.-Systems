@@ -33,37 +33,51 @@ public class King extends Piece {
         return moves;
     }
 
-    /**
-     * Check to see if the King can castle legally.
-     * @return true, if King has not moved from original starting position and their is no obstruction between
-     * the king and the Rook.
-     */
-    public boolean canCastle() {
+    private int checkCastlingLegal(Rook rook) {
         Game game = new Game();
         int[][] piecePosition = game.getPieceNumbers();
 
         // Black King castling WEST
-        if (!this.isWhite() && getMovementCounter() == 0 && piecePosition[0][2] == 0 &&
+        if (!this.isWhite() &&
+                getMovementCounter() == 0 &&
+                !rook.isWhite() &&
+                rook.getMovementCounter() == 0 &&
+                piecePosition[0][2] == 0 &&
                 piecePosition[0][1] == 0) {
-            return true;
+            return 1;
         }
         // Black King castling EAST
-        if (!this.isWhite() && getMovementCounter() == 0 && piecePosition[0][4] == 0 &&
-                piecePosition[0][5] == 0 && piecePosition[0][6] == 0) {
-            return true;
+        if (!this.isWhite() &&
+                getMovementCounter() == 0 &&
+                !rook.isWhite() &&
+                rook.getMovementCounter() == 0 &&
+                piecePosition[0][4] == 0 &&
+                piecePosition[0][5] == 0 &&
+                piecePosition[0][6] == 0) {
+            return 2;
         }
         // White King castling WEST
-        if (this.isWhite() && getMovementCounter() == 0 && piecePosition[7][3] == 0 &&
-                piecePosition[7][2] == 0 && piecePosition[7][1] == 0) {
-            return true;
+        if (this.isWhite() &&
+                getMovementCounter() == 0 &&
+                rook.isWhite() &&
+                rook.getMovementCounter() == 0 &&
+                piecePosition[7][3] == 0 &&
+                piecePosition[7][2] == 0 &&
+                piecePosition[7][1] == 0) {
+            return 3;
         }
         // White King castling EAST
-        if (this.isWhite() && getMovementCounter() == 0 && piecePosition[7][5] == 0 &&
+        if (this.isWhite() &&
+                getMovementCounter() == 0 &&
+                rook.isWhite() &&
+                rook.getMovementCounter() == 0 &&
+                piecePosition[7][5] == 0 &&
                 piecePosition[7][6] == 0) {
-            return true;
+            return 4;
         }
-        return false;
+        return 0;
     }
+
 
     @Override
     public BufferedImage pieceImage() throws IOException {
