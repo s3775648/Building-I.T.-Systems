@@ -56,6 +56,7 @@ public class Tile extends JPanel {
 	
 	public void setSelected(boolean i) {
 		selected = i;
+		this.repaint();
 	}
 	public boolean isSelected() {
 		if(selected) {

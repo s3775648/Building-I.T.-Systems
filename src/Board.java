@@ -12,9 +12,11 @@ public class Board extends JPanel implements MouseListener {
 	private final int tile_height;
 	private final int[][] tileSpotArray;
 	private Tile[][] tilesArray;
+	public String pieceName = "Hello";
 	
 	public Board(int tiles_x, int tiles_y, int tile_width, int tile_height, int[][] tiles, int[][] pieceNumbers) {
 		super();
+		this.addMouseListener(this);
 		this.tilesArray = new Tile[8][8];
 		this.tileSpotArray = tiles;
 		this.tiles_x = tiles_x;
@@ -63,7 +65,7 @@ public class Board extends JPanel implements MouseListener {
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		Tile i = (Tile) this.getComponentAt(e.getX(), e.getY());
-		
+		i.setSelected(true);
 	}
 
 	@Override
