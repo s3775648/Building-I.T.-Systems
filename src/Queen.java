@@ -6,7 +6,7 @@ public class Queen extends Piece
 {
     public Queen(boolean isWhite)
     {
-        super(isWhite);
+        super(isWhite, "Queen");
     }
 
     @Override

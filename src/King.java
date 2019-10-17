@@ -8,7 +8,7 @@ public class King extends Piece
 
     public King(boolean isWhite)
     {
-        super(isWhite);
+        super(isWhite, "King");
         this.hasCastled = false;
     }
 

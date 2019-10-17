@@ -8,11 +8,16 @@ public abstract class Piece
 {
     private boolean isKilled;
     private boolean isWhite;
+    private int movementCounter, killStreak;
+    private String pieceName;
 
-    public Piece(boolean isWhite)
+    public Piece(boolean isWhite, String pieceName)
     {
         this.isWhite = isWhite;
         this.isKilled = false;
+        this.movementCounter = 0;
+        this.killStreak = 0;
+        this.pieceName = pieceName;
     }
 
     /**
@@ -38,4 +43,28 @@ public abstract class Piece
         return isWhite;
     }
 
+    public int getMovementCounter()
+    {
+        return movementCounter;
+    }
+
+    public int getKillStreak()
+    {
+        return killStreak;
+    }
+
+    public String getPieceName()
+    {
+        return pieceName;
+    }
+
+    public void setMovementCounter(int movementCounter)
+    {
+        this.movementCounter = movementCounter;
+    }
+
+    public void setKillStreak(int killStreak)
+    {
+        this.killStreak = killStreak;
+    }
 }

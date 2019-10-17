@@ -8,7 +8,7 @@ public class Pawn extends Piece
 
     public Pawn(boolean isWhite)
     {
-        super(isWhite);
+        super(isWhite, "Pawn");
         isFirstMove = true;
     }
 
