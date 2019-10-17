@@ -33,25 +33,31 @@ public class King extends Piece {
         return moves;
     }
 
+    /**
+     * Check to see if the King can castle legally.
+     * @return true, if King has not moved from original starting position and their is no obstruction between
+     * the king and the Rook.
+     */
     public boolean canCastle() {
         Game game = new Game();
         int[][] piecePosition = game.getPieceNumbers();
 
-        //Black King castling WEST
+        // Black King castling WEST
         if (!this.isWhite() && getMovementCounter() == 0 && piecePosition[0][2] == 0 &&
                 piecePosition[0][1] == 0) {
             return true;
         }
-        //Black King castling EAST
+        // Black King castling EAST
         if (!this.isWhite() && getMovementCounter() == 0 && piecePosition[0][4] == 0 &&
                 piecePosition[0][5] == 0 && piecePosition[0][6] == 0) {
             return true;
         }
-        //White King castling WEST
+        // White King castling WEST
         if (this.isWhite() && getMovementCounter() == 0 && piecePosition[7][3] == 0 &&
                 piecePosition[7][2] == 0 && piecePosition[7][1] == 0) {
             return true;
         }
+        // White King castling EAST
         if (this.isWhite() && getMovementCounter() == 0 && piecePosition[7][5] == 0 &&
                 piecePosition[7][6] == 0) {
             return true;
