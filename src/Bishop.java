@@ -4,15 +4,13 @@ import java.io.IOException;
 
 public class Bishop extends Piece
 {
-    public Bishop(boolean isWhite)
-    {
+    public Bishop(boolean isWhite) {
         super(isWhite, "Bishop");
     }
 
     @Override
-    public int[][] canMove()
-    {
-        int[][] moves = new int[][]{
+    public int[][] canMove() {
+        int[][] moves = new int[][] {
                 {1, 1}, {2, 2}, {3, 3}, {4, 4}, {5, 5}, {6, 6}, {7, 7}, // North-East
                 {1, -1}, {2, -2}, {3, -3}, {4, -4}, {5, -5}, {6, -6}, {7, -7}, // North-West
                 {-1, 1}, {-2, 2}, {-3, 3}, {-4, 4}, {-5, 5}, {-6, 6}, {-7, 7}, // South-East
@@ -22,16 +20,12 @@ public class Bishop extends Piece
     }
 
     @Override
-    public BufferedImage pieceImage() throws IOException
-    {
+    public BufferedImage pieceImage() throws IOException {
         BufferedImage image;
-        if (isWhite())
-        {
+        if (isWhite()) {
             image = ImageIO.read(getClass().getResource("Pieces/Final Pieces/White set/WhiteBishop.png"));
             return image;
-        }
-        else
-        {
+        } else {
             image = ImageIO.read(getClass().getResource("Pieces/Final Pieces/Black set/BlackBishop.png"));
             return image;
         }

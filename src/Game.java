@@ -1,11 +1,7 @@
-import java.awt.Dimension;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
-import javax.swing.JFrame;
-import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
-import javax.swing.WindowConstants;
 
 public class Game extends JPanel implements MouseListener{
 	JFrame frame = new JFrame("Chess");
@@ -63,6 +59,12 @@ public class Game extends JPanel implements MouseListener{
 		frame.pack();
 		frame.setVisible(true);
 	}
+
+	public int[][] getPieceNumbers()
+	{
+		return pieceNumbers;
+	}
+
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub

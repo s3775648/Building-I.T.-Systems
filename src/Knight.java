@@ -4,14 +4,12 @@ import java.io.IOException;
 
 public class Knight extends Piece
 {
-    public Knight(boolean isWhite)
-    {
+    public Knight(boolean isWhite) {
         super(isWhite, "Knight");
     }
 
     @Override
-    public int[][] canMove()
-    {
+    public int[][] canMove() {
         int[][] moves = new int[][] {
                 {1,-2}, // North-West 1
                 {2,-1}, // North-West 2
@@ -26,16 +24,12 @@ public class Knight extends Piece
     }
 
     @Override
-    public BufferedImage pieceImage() throws IOException
-    {
+    public BufferedImage pieceImage() throws IOException {
         BufferedImage image;
-        if (isWhite())
-        {
+        if (isWhite()) {
             image = ImageIO.read(getClass().getResource("Pieces/Final Pieces/White set/WhiteKnight.png"));
             return image;
-        }
-        else
-        {
+        } else {
             image = ImageIO.read(getClass().getResource("Pieces/Final Pieces/Black set/BlackKnight.png"));
             return image;
         }

@@ -4,15 +4,13 @@ import java.io.IOException;
 /**
  * Abstract class to represent common functionality of all chess pieces.
  */
-public abstract class Piece
-{
+public abstract class Piece {
     private boolean isKilled;
     private boolean isWhite;
     private int movementCounter, killStreak;
     private String pieceName;
 
-    public Piece(boolean isWhite, String pieceName)
-    {
+    public Piece(boolean isWhite, String pieceName) {
         this.isWhite = isWhite;
         this.isKilled = false;
         this.movementCounter = 0;
@@ -28,43 +26,35 @@ public abstract class Piece
 
     public abstract BufferedImage pieceImage() throws IOException;
 
-    public boolean isKilled()
-    {
+    public boolean isKilled() {
         return isKilled;
     }
 
-    public void setKilled(boolean killed)
-    {
+    public void setKilled(boolean killed) {
         isKilled = killed;
     }
 
-    public boolean isWhite()
-    {
+    public boolean isWhite() {
         return isWhite;
     }
 
-    public int getMovementCounter()
-    {
+    public int getMovementCounter() {
         return movementCounter;
     }
 
-    public int getKillStreak()
-    {
+    public int getKillStreak() {
         return killStreak;
     }
 
-    public String getPieceName()
-    {
+    public String getPieceName() {
         return pieceName;
     }
 
-    public void setMovementCounter(int movementCounter)
-    {
+    public void setMovementCounter(int movementCounter) {
         this.movementCounter = movementCounter;
     }
 
-    public void setKillStreak(int killStreak)
-    {
+    public void setKillStreak(int killStreak) {
         this.killStreak = killStreak;
     }
 }
