@@ -1,6 +1,5 @@
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
 public class Pawn extends Piece
@@ -49,12 +48,12 @@ public class Pawn extends Piece
         BufferedImage image;
         if (isWhite())
         {
-            image = ImageIO.read(new File("WhitePawn.png"));
+            image = ImageIO.read(getClass().getResource("Pieces/Final Pieces/White set/WhitePawn.png"));
             return image;
         }
         else
         {
-            image = ImageIO.read(getClass().getResource("Pieces/Final Pieces/Black Set/BlackPawn.png"));
+            image = ImageIO.read(getClass().getResource("Pieces/Final Pieces/Black set/BlackPawn.png"));
             return image;
         }
     }

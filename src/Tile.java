@@ -1,9 +1,7 @@
-import java.awt.Color;
-import java.awt.Graphics;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-
-import javax.swing.JPanel;
 
 public class Tile extends JPanel {
 	
@@ -103,7 +101,7 @@ public class Tile extends JPanel {
 			setPiece(new Pawn(isWhite()));
 			break;
 		case 2:
-			//setPiece(new Castle());
+			setPiece(new Rook(isWhite()));
 			break;
 		case 3:
 			setPiece(new Bishop(isWhite()));

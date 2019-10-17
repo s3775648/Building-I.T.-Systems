@@ -1,6 +1,5 @@
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
 public class King extends Piece
@@ -46,12 +45,12 @@ public class King extends Piece
         BufferedImage image;
         if (isWhite())
         {
-            image = ImageIO.read(new File("WhiteKing.png"));
+            image = ImageIO.read(getClass().getResource("Pieces/Final Pieces/White set/WhiteKing.png"));
             return image;
         }
         else
         {
-            image = ImageIO.read(new File("BlackKing.png"));
+            image = ImageIO.read(getClass().getResource("Pieces/Final Pieces/Black set/BlackKing.png"));
             return image;
         }
     }
