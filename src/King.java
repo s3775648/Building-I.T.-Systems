@@ -33,52 +33,6 @@ public class King extends Piece {
         return moves;
     }
 
-    private int checkCastlingLegal(Rook rook) {
-        Game game = new Game();
-        int[][] piecePosition = game.getPieceNumbers();
-
-        // Black King castling WEST
-        if (!this.isWhite() &&
-                getMovementCounter() == 0 &&
-                !rook.isWhite() &&
-                rook.getMovementCounter() == 0 &&
-                piecePosition[0][2] == 0 &&
-                piecePosition[0][1] == 0) {
-            return 1;
-        }
-        // Black King castling EAST
-        if (!this.isWhite() &&
-                getMovementCounter() == 0 &&
-                !rook.isWhite() &&
-                rook.getMovementCounter() == 0 &&
-                piecePosition[0][4] == 0 &&
-                piecePosition[0][5] == 0 &&
-                piecePosition[0][6] == 0) {
-            return 2;
-        }
-        // White King castling WEST
-        if (this.isWhite() &&
-                getMovementCounter() == 0 &&
-                rook.isWhite() &&
-                rook.getMovementCounter() == 0 &&
-                piecePosition[7][3] == 0 &&
-                piecePosition[7][2] == 0 &&
-                piecePosition[7][1] == 0) {
-            return 3;
-        }
-        // White King castling EAST
-        if (this.isWhite() &&
-                getMovementCounter() == 0 &&
-                rook.isWhite() &&
-                rook.getMovementCounter() == 0 &&
-                piecePosition[7][5] == 0 &&
-                piecePosition[7][6] == 0) {
-            return 4;
-        }
-        return 0;
-    }
-
-
     @Override
     public BufferedImage pieceImage() throws IOException {
         BufferedImage image;
