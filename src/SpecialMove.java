@@ -25,8 +25,8 @@ public class SpecialMove {
         }
         // White King castling EAST
         else if (result == 4) {
-            kingMovement = new int[][]{{0, 2}};
-            rookMovement = new int[][]{{0, -2}};
+            kingMovement = new int[][]{{0,2}};
+            rookMovement = new int[][]{{0,-2}};
             castlingMovements = new Object[] {kingMovement, rookMovement};
         }
         return castlingMovements;    
