@@ -1,6 +1,6 @@
 public class SpecialMove {
 
-    public static Object[] canCastle(King king, Rook rook) {
+    public static Object[] castle(King king, Rook rook) {
         int result = checkCastlingLegal(king, rook);
         int[][] kingMovement, rookMovement;
         Object[] castlingMovements = new Object[1];
