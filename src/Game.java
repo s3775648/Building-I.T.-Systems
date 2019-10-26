@@ -1,7 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.concurrent.TimeUnit;
 
 public class Game extends JPanel implements MouseListener{
 	JFrame frame = new JFrame("Chess");
@@ -14,6 +17,10 @@ public class Game extends JPanel implements MouseListener{
 	private final int TILES_Y = 8;
 	
 	private Board b;
+	
+	// Records initial system time once game started
+	long start = System.nanoTime();
+	
 	
 	private final int INITIAL_WIDTH = (TILES_X * TILE_WIDTH) + (2 * BOARD_BORDER_WIDTH);
 	private final int INITIAL_HEIGHT = (TILES_Y * TILE_HEIGHT) + (2 * BOARD_BORDER_HEIGHT);
@@ -39,6 +46,7 @@ public class Game extends JPanel implements MouseListener{
 		{1, 1, 1, 1, 1, 1, 1, 1},
 		{2, 3, 4, 6, 5, 4, 3, 2}
 	};
+	
 	//Default constructor
 	public Game() {
 		//
@@ -50,7 +58,39 @@ public class Game extends JPanel implements MouseListener{
 		layers.add(new Background(INITIAL_WIDTH, INITIAL_HEIGHT), 1);
 		layers.add(b, 0);
 		
-		frame.add(layers);
+
+		// Adding in Timer layer
+		frame.getContentPane().add(layers);
+		
+		JLabel TimerCount = new JLabel("Timer : " );
+		TimerCount.setFont(new Font("Tahoma", Font.BOLD, 18));
+		layers.setLayer(TimerCount, 1);
+		TimerCount.setHorizontalAlignment(SwingConstants.CENTER);
+		TimerCount.setBounds(141, 11, 279, 53);
+		
+		
+		new Timer(1000, new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				long end = System.nanoTime();
+				  
+				long elapsedInNanos = end - start;
+				long elapsedInSeconds =elapsedInNanos/1000000000;
+				
+				String updateLabel = String.valueOf(elapsedInSeconds);
+				
+				//Continuous overriding time (Refresh)
+				TimerCount.setText("Timer : " +updateLabel) ;
+				
+				
+			}
+		}).start();
+		//Push timer into Frame
+		layers.add(TimerCount);
+
+		
 		frame.setSize(INITIAL_WIDTH, INITIAL_HEIGHT);
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		
@@ -59,17 +99,25 @@ public class Game extends JPanel implements MouseListener{
 		frame.pack();
 		frame.setVisible(true);
 	}
+	
+	
 
-	public int[][] getPieceNumbers()
+	public  int[][] getPieceNumbers()
 	{
+		
 		return pieceNumbers;
 	}
 
+
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		System.out.println(b.pieceName);
+
 	}
+	
+	
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
@@ -90,4 +138,6 @@ public class Game extends JPanel implements MouseListener{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
 }
