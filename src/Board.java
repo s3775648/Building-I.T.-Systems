@@ -5,6 +5,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JPanel;
 
+
 public class Board extends JPanel implements MouseListener {
 	private final int tiles_x;
 	private final int tiles_y;
@@ -13,10 +14,13 @@ public class Board extends JPanel implements MouseListener {
 	private final int[][] tileSpotArray;
 	private Tile[][] tilesArray;
 	public String pieceName = "Empty Tile - Not Occupied";
+	
+	
+	Game game;
 
 
 
-	public Board(int tiles_x, int tiles_y, int tile_width, int tile_height, int[][] tiles, int[][] pieceNumbers) {
+	public Board(int tiles_x, int tiles_y, int tile_width, int tile_height, int[][] tiles, int[][] pieceNumbers, Game game) {
 		super();
 		this.addMouseListener(this);
 		this.tilesArray = new Tile[8][8];
@@ -26,6 +30,8 @@ public class Board extends JPanel implements MouseListener {
 		this.tile_width = tile_width;
 		this.tile_height = tile_height;
 		
+		// Uses current game.
+		this.game = game;
 	
 		
 		
@@ -134,12 +140,7 @@ public class Board extends JPanel implements MouseListener {
 		// E.g. Starting from 1 rather than 0
 		
 		System.out.println("X,Y Axis : " + (clickedX+1) + " , "+ (clickedY+1));
-		
-		//Initializing new Game in conflict with current game
-		// Need to find a solution continue without restarting.
-		Game game = new Game();
-		
-		
+
 	    int[][] piecePosition = game.getPieceNumbers();
 	    
 	    // Obtain Piece number identifier

@@ -51,7 +51,7 @@ public class Game extends JPanel implements MouseListener{
 	public Game() {
 		//
 		this.addMouseListener(this);
-		b = new Board(TILES_X, TILES_Y, TILE_WIDTH, TILE_HEIGHT, tiles, pieceNumbers);
+		b = new Board(TILES_X, TILES_Y, TILE_WIDTH, TILE_HEIGHT, tiles, pieceNumbers,this);
 		b.setBounds(BOARD_BORDER_WIDTH, BOARD_BORDER_HEIGHT, (TILES_X * TILE_WIDTH), (TILES_Y * TILE_HEIGHT));
 		JLayeredPane layers = new JLayeredPane();
 		layers.setPreferredSize(new Dimension(INITIAL_WIDTH, INITIAL_HEIGHT));
