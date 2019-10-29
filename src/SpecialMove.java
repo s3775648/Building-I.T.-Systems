@@ -1,6 +1,6 @@
 public class SpecialMove {
 
-    public static Object[] castle(King king, Rook rook) {
+    public static Object[] castle(King king, Rook rook) throws IllegalCastlingException {
         int result = checkCastlingLegal(king, rook);
         int[][] kingMovement, rookMovement;
         Object[] castlingMovements = new Object[1];
@@ -28,6 +28,9 @@ public class SpecialMove {
             kingMovement = new int[][]{{0,2}};
             rookMovement = new int[][]{{0,-2}};
             castlingMovements = new Object[] {kingMovement, rookMovement};
+        }
+        else if (result == 0) {
+            throw new IllegalCastlingException("Castling move illegal");
         }
         return castlingMovements;    
     }
@@ -75,5 +78,11 @@ public class SpecialMove {
             return 4;
         }
         return 0;
+    }
+
+    private static class IllegalCastlingException extends Exception {
+        public IllegalCastlingException(String errorMessage) {
+            super(errorMessage);
+        }
     }
 }
