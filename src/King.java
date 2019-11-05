@@ -19,9 +19,9 @@ public class King extends Piece {
     }
 
     @Override
-    public int[][] canMove() {
-        int[][] moves;
-        moves = new int[][] {
+    public int[][][] canMove() {
+        int[][][] moves;
+        moves = new int[][][] {{
                 {1,0},       // South
                 {-1,0},      // North
                 {0,1},       // East
@@ -29,7 +29,8 @@ public class King extends Piece {
                 {1,1},       // South-East
                 {1,-1},      // South-West
                 {-1,1},      // North-East
-                {-1,-1}};    // North-West
+                {-1,-1}      // North-West
+        }};
         return moves;
     }
 

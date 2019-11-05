@@ -22,7 +22,7 @@ public abstract class Piece {
      * [x][y] board coordinates.
      * @return, possible moves.
      */
-    public abstract int[][] canMove();
+    public abstract int[][][] canMove();
 
     public abstract BufferedImage pieceImage() throws IOException;
 
