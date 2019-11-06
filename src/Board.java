@@ -13,12 +13,9 @@ public class Board extends JPanel implements MouseListener {
 	private final int tile_height;
 	private final int[][] tileSpotArray;
 	private Tile[][] tilesArray;
-	public String pieceName = "Empty Tile - Not Occupied";
-	
+	public String pieceName = "Empty";
 	
 	Game game;
-
-
 
 	public Board(int tiles_x, int tiles_y, int tile_width, int tile_height, int[][] tiles, int[][] pieceNumbers, Game game) {
 		super();
@@ -30,6 +27,7 @@ public class Board extends JPanel implements MouseListener {
 		this.tile_width = tile_width;
 		this.tile_height = tile_height;
 		
+
 		// Uses current game.
 		this.game = game;
 	
@@ -72,42 +70,6 @@ public class Board extends JPanel implements MouseListener {
 		}
 	}
 	
-	
-	// Basic Categorization for pieces.
-	public String getPieceName(int pieceNumber) {
-		switch(pieceNumber) {
-		case 0: 
-			break;
-		case 1:
-			if(pieceNumber == 1)
-				return "Pawn";
-			break;
-		case 2:
-			if(pieceNumber == 2)
-				return "Rook";
-			break;
-		case 3:
-			if(pieceNumber == 3)
-				return "Bishop";
-			break;
-		case 4:
-			if(pieceNumber == 4)
-				return "Knight";
-			break;
-		case 5:
-			if(pieceNumber == 5)
-				return "Queen";
-			break;
-		case 6:
-			if(pieceNumber == 6)
-				return "King";
-			break;
-		default:
-			System.out.println("ERROR");
-		}
-		// When tile isn't occupied, returns default message
-		return pieceName;
-	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -116,46 +78,45 @@ public class Board extends JPanel implements MouseListener {
 		
 		Tile i = (Tile) this.getComponentAt(e.getX(), e.getY());
 		i.setSelected(true);
+		
+		
+		//Current Mouse click position 
+		//Divided by Tile height and width
+		//Board Starting from top  Starting From top-Left corner
+
+		int currentPosX = e.getX()/60;
+		int currentPosY = e.getY()/60;
+		
+		int[][] piecePosition = game.getPieceNumbers();
+		
+		String clickedTile;
+		    
+		// Obtain Piece number identifier
+		int currentPieceNumber = piecePosition[currentPosY][currentPosX];
+	
+		if(currentPieceNumber == 0) {
+			clickedTile = pieceName;
+		} else {
+			clickedTile = i.piece.getPieceName();
+		}
+		
+		
+		// Print to console
+		System.out.println("*** MOUSE SELECTED ***");
+		System.out.println("Piece Number: " +currentPieceNumber);
+	    System.out.println("Piece Name: " + clickedTile);
+		
+	    // +1 For accurate positioning
+		// E.g. Starting from 1 rather than 0
+		System.out.println("Location X-Y: (" + (currentPosX+1) + ","+ (currentPosY+1) + ") \n");
 
 	
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-
+		// TODO Auto-generated method stub
 		
-		//Current Mouse click position 
-		//Divided by Tile height and width
-		
-		int currentPosX = e.getX()/60;
-		int currentPosY = e.getY()/60;
-		
-		// Starting From top-Left corner
-		
-		int clickedX = currentPosX ;
-		int clickedY = currentPosY ; 
-		
-		//Test Click
-		// +1 For accurate positioning
-		// E.g. Starting from 1 rather than 0
-		
-		System.out.println("X,Y Axis : " + (clickedX+1) + " , "+ (clickedY+1));
-
-	    int[][] piecePosition = game.getPieceNumbers();
-	    
-	    // Obtain Piece number identifier
-	    int currentPieceNumber = piecePosition[clickedY][clickedX];
-	    
-	    //Convert number into Name
-	    String currentPiece = getPieceName(currentPieceNumber);
-	   
-	    // Print to console
-	    System.out.println("Piece Number: " +currentPieceNumber +  " \nPiece Name:   " + currentPiece);
-	    System.out.println();
-	  
-	
-	   
-	
 	}
 
 	@Override
