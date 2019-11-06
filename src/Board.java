@@ -70,6 +70,9 @@ public class Board extends JPanel implements MouseListener {
 		}
 	}
 	
+	//Initializing Click counter and selection
+	int clickCount = 0;
+	
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -79,7 +82,7 @@ public class Board extends JPanel implements MouseListener {
 		Tile i = (Tile) this.getComponentAt(e.getX(), e.getY());
 		i.setSelected(true);
 		
-		
+
 		//Current Mouse click position 
 		//Divided by Tile height and width
 		//Board Starting from top  Starting From top-Left corner
@@ -90,27 +93,46 @@ public class Board extends JPanel implements MouseListener {
 		int[][] piecePosition = game.getPieceNumbers();
 		
 		String clickedTile;
+		String playerColour = null;
 		    
 		// Obtain Piece number identifier
 		int currentPieceNumber = piecePosition[currentPosY][currentPosX];
 	
 		if(currentPieceNumber == 0) {
 			clickedTile = pieceName;
+			playerColour = "";
 		} else {
 			clickedTile = i.piece.getPieceName();
+			if(i.piece.isWhite() == true) {
+				playerColour = "White";
+			} else if(i.piece.isWhite() == false) {
+				playerColour = "Black";
+			}
+		}
+
+		// Print to console
+		System.out.println("*** MOUSE SELECTED ***");
+		
+		//Click Counter for identifying first/second clicks
+		if(clickCount == 0 ) { 
+			System.out.println("Click Count : FirstCLick");
+			clickCount++;
+		} else if(clickCount == 1) {
+			System.out.println("Click Count : SecondClick");
+			clickCount--;
 		}
 		
 		
-		// Print to console
-		System.out.println("*** MOUSE SELECTED ***");
-		System.out.println("Piece Number: " +currentPieceNumber);
-	    System.out.println("Piece Name: " + clickedTile);
+		System.out.println("Piece Number: " + currentPieceNumber);
+	    System.out.println("Piece Name: " + playerColour + " " + clickedTile);
 		
 	    // +1 For accurate positioning
 		// E.g. Starting from 1 rather than 0
 		System.out.println("Location X-Y: (" + (currentPosX+1) + ","+ (currentPosY+1) + ") \n");
 
-	
+
+		//*********************************************************//
+
 	}
 
 	@Override
