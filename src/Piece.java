@@ -18,7 +18,15 @@ public abstract class Piece {
         this.pieceName = pieceName;
     }
 
-    /**
+    public Piece(boolean isWhite, String pieceName) {
+        this.isWhite = isWhite;
+        this.isKilled = false;
+        this.movementCounter = 0;
+        this.killStreak = 0;
+        this.pieceName = pieceName;
+	}
+
+	/**
      * [x][y] board coordinates.
      * @return, possible moves.
      */

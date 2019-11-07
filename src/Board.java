@@ -2,6 +2,8 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JPanel;
 
@@ -13,12 +15,21 @@ public class Board extends JPanel implements MouseListener {
 	private final int[][] tileSpotArray;
 	private Tile[][] tilesArray;
 	public String pieceName = "Empty";
+	
+	//Mouse click variables
+	
+	private int clickCount = 0;
+	
+	private Tile sourceTile;
+	private Tile destinationTile;
+	
+	private Piece sourcePiece;
+	private Piece destinationPiece;
 
 	Game game;
 
 	public Board(int tiles_x, int tiles_y, int tile_width, int tile_height, int[][] tiles, int[][] pieceNumbers,
 			Game game) {
-		super();
 		this.addMouseListener(this);
 		this.tilesArray = new Tile[8][8];
 		this.tileSpotArray = tiles;
@@ -66,97 +77,95 @@ public class Board extends JPanel implements MouseListener {
 			}
 		}
 	}
-
-	// Initializing Click counter and selection
-	int clickCount = 0;
-	Piece a ;
-	Piece b ;
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 
-		// Highlighting Selected tile
+		//Get the tile
 
 		Tile i = (Tile) this.getComponentAt(e.getX(), e.getY());
-		
 
-		// Current Mouse click position
-		// Divided by Tile height and width
-		// Board Starting from top Starting From top-Left corner
-
-		int currentPosX = e.getX() / 60;
-		int currentPosY = e.getY() / 60;
-
-		int[][] piecePosition = game.getPieceNumbers();
-
-		String clickedTile;
-		String playerColour = null;
-
-		// Obtain Piece number identifier
-		int currentPieceNumber = piecePosition[currentPosY][currentPosX];
-
-		if (currentPieceNumber == 0) {
-			clickedTile = pieceName;
-			playerColour = "";
-		} else {
-			clickedTile = i.piece.getPieceName();
-			if (i.piece.isWhite() == true) {
-				playerColour = "White";
-			} else if (i.piece.isWhite() == false) {
-				playerColour = "Black";
-			}
-		}
-
-		// Print to console
-		System.out.println("*** MOUSE SELECTED ***");
-
-		// Click Counter for identifying first/second clicks
+		//Handles click based on if it is first or second click
 		if (clickCount == 0) {
-			System.out.println("Click Count : FirstCLick");
-
-			// Replacing Piece to Temporary variables
-			a = i.getPiece();
-			clickCount++;
-			
-			
-			System.out.println("Get Piece location: " + a);
-			
-			
+			sourceTile = i;
+			List<int[][][]> moves = determineMoves(sourceTile);
+			for(int item = 0; item < moves.size(); item++) {
+				for(int dir = 0; dir < moves.get(item).length; dir++) {
+					if(moves.get(item)[dir].length > 0) {
+						for(int move = 0; move < moves.get(item)[dir].length; move++) {
+							System.out.println("Y: "+moves.get(item)[dir][move][0]+", X: "+moves.get(item)[dir][move][1]);
+							int indexY = moves.get(item)[dir][move][0];
+							int indexX = moves.get(item)[dir][move][1];
+							
+							tilesArray[indexY][indexX].setSelected(true);
+						}
+					}
+				}
+			}
+			clickCount = 1;
 		} else if (clickCount == 1) {
-			System.out.println("Click Count : SecondClick");
-
-			// Replacing Piece to Temporary variables
-
-			b = i.getPiece();
-			
-			clickCount--;
-			
-			
-			System.out.println("Get Piece location: " + b);
-			
-		
-//			reseting values after second click.?
-//			a = null;
-//			b = null;
-		}
-
-		System.out.println("Piece Number: " + currentPieceNumber);
-		System.out.println("Piece Name: " + playerColour + " " + clickedTile);
-
-		// +1 For accurate positioning
-		// E.g. Starting from 1 rather than 0
-		System.out.println("Location X-Y: (" + (currentPosX + 1) + "," + (currentPosY + 1) + ") \n");
-
-		// *********************************************************//
-
-		//b.replacePiece(a);
-		
-		
-		
-		
+			for(int y = 0; y < tilesArray.length; y++) {
+				for(int x = 0; x < tilesArray[y].length; x++) {
+					tilesArray[y][x].setSelected(false);
+				}
+			}
+			destinationTile = i;
+			clickCount = 0;
+		}	
 	}
 	
 	
+
+	private List<int[][][]> determineMoves(Tile tile) {
+		// TODO Auto-generated method stub
+		Piece piece = tile.getPiece();
+		int[][][] moves = piece.canMove();
+		int tileX = tile.getIndexX();
+		int tileY = tile.getIndexY();
+		
+		List<int[][][]> possibleMoves = new ArrayList<int[][][]>();
+		//{Direction
+		// {Move} {Move}
+		
+		for(int dir = 0; dir < moves.length; dir++) {
+			List<int[]> directionMoves = new ArrayList<int[]>();
+			for(int move = 0; move < moves[dir].length; move++) {
+				//0 = Y, 1 = X
+				int[] newMove = new int[] {tileY + moves[dir][move][0], tileX + moves[dir][move][1]};
+				
+				if(newMove[0] > 7 || newMove[0] < 0 || newMove[1] > 7 || newMove[1] < 0) {
+					System.out.println("Invalid move"); //Add location later
+				} else {
+					directionMoves.add(newMove);
+					System.out.println("Valid move");
+				}
+			}
+			int[][] directionArray = new int[directionMoves.size()][2];
+			//System.out.println(directionMoves.size());
+			
+			directionMoves.forEach(move -> {
+				try {
+					directionArray[directionMoves.indexOf(move)] = new int[] {move[0], move[1]};
+					//System.out.println(directionArray.length);
+				} catch (IndexOutOfBoundsException e) {
+					System.out.println(e);
+				}
+			});
+			
+			int moveSets[][][] = new int[][][] {directionArray};
+			
+			System.out.println(directionMoves.size());
+			
+			directionMoves.forEach(item -> {
+				System.out.println(directionMoves.indexOf(item));
+				//System.out.println(item[0]+','+item[1]);
+			});
+			
+			possibleMoves.add(moveSets);
+		}
+		
+		return possibleMoves;
+	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {

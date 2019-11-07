@@ -50,6 +50,7 @@ public class Game extends JPanel implements MouseListener{
 	//Default constructor
 	public Game() {
 		//
+		System.out.println("Game started");
 		this.addMouseListener(this);
 		b = new Board(TILES_X, TILES_Y, TILE_WIDTH, TILE_HEIGHT, tiles, pieceNumbers,this);
 		b.setBounds(BOARD_BORDER_WIDTH, BOARD_BORDER_HEIGHT, (TILES_X * TILE_WIDTH), (TILES_Y * TILE_HEIGHT));
@@ -67,28 +68,6 @@ public class Game extends JPanel implements MouseListener{
 		layers.setLayer(TimerCount, 1);
 		TimerCount.setHorizontalAlignment(SwingConstants.CENTER);
 		TimerCount.setBounds(141, 11, 279, 53);
-		
-		
-		new Timer(1000, new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				long end = System.nanoTime();
-				  
-				long elapsedInNanos = end - start;
-				long elapsedInSeconds =elapsedInNanos/1000000000;
-				
-				String updateLabel = String.valueOf(elapsedInSeconds);
-				
-				//Continuous overriding time (Refresh)
-				TimerCount.setText("Timer : " +updateLabel) ;
-				
-				
-			}
-		}).start();
-		//Push timer into Frame
-		layers.add(TimerCount);
 
 		
 		frame.setSize(INITIAL_WIDTH, INITIAL_HEIGHT);

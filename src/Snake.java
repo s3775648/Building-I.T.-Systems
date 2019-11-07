@@ -9,12 +9,12 @@ public class Snake extends Piece {
     }
 
     @Override
-    public int[][] canMove() {
-        int[][] moves = new int[][] {
-        	{1,1}, {1,3}, {3,1}, {3,3}, 		//North East
-        	{1,-1}, {1,-3}, {3,-1}, {3,-3}, 	//North West
-        	{-1,1}, {-1,3}, {-3,1}, {-3,3}, 	//South East
-        	{-1,-1}, {-1,-3}, {-3,-1}, {-3,-3}, // South West
+    public int[][][] canMove() {
+        int[][][] moves = new int[][][] {
+        	{{1,1}, {1,3}, {3,1}, {3,3}}, 		//North East
+        	{{1,-1}, {1,-3}, {3,-1}, {3,-3}}, 	//North West
+        	{{-1,1}, {-1,3}, {-3,1}, {-3,3}}, 	//South East
+        	{{-1,-1}, {-1,-3}, {-3,-1}, {-3,-3}} // South West
         };
         return moves;
     }

@@ -18,9 +18,14 @@ public class Tile extends JPanel {
 	private boolean selected = false;
 	Piece piece;
 	
+	private final int indexX;
+	private final int indexY;
+	
 	public Tile(int colour, int indexY, int indexX, int startPiece, boolean isWhite) {
 		super();
 		this.isWhite = isWhite;
+		this.indexX = indexX;
+		this.indexY = indexY;
 		createPiece(startPiece);
 		if(colour == 1) {
 			isLightTile = true;
@@ -36,6 +41,14 @@ public class Tile extends JPanel {
 		} else {
 			return false;
 		}
+	}
+	
+	public int getIndexX() {
+		return indexX;
+	}
+	
+	public int getIndexY() {
+		return indexY;
 	}
 	
 	public BufferedImage getPieceImage() throws IOException {
