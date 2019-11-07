@@ -57,4 +57,17 @@ public abstract class Piece {
     public void setKillStreak(int killStreak) {
         this.killStreak = killStreak;
     }
+    
+    // ADDED 06/11/2019 Manh 
+    public Piece replacePiece(Piece replacedPiece) {
+    	return replacedPiece;
+    }
+
+    public boolean removePiece() {
+    	return true;
+    }
+    
+    public Piece setPiece(Piece i) {
+    	return i;
+    }
 }
