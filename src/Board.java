@@ -78,7 +78,7 @@ public class Board extends JPanel implements MouseListener {
 		// Highlighting Selected tile
 
 		Tile i = (Tile) this.getComponentAt(e.getX(), e.getY());
-		i.setSelected(true);
+		
 
 		// Current Mouse click position
 		// Divided by Tile height and width
