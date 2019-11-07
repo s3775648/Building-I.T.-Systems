@@ -10,7 +10,7 @@ public abstract class Piece {
     private int movementCounter, killStreak;
     private String pieceName;
 
-    public Piece(boolean isWhite, String pieceName) {
+    public Piece(boolean isWhite, String pieceName, int indexX, int indexY) {
         this.isWhite = isWhite;
         this.isKilled = false;
         this.movementCounter = 0;
