@@ -57,7 +57,11 @@ public class Game extends JPanel implements MouseListener{
 		JLayeredPane layers = new JLayeredPane();
 		layers.setPreferredSize(new Dimension(INITIAL_WIDTH, INITIAL_HEIGHT));
 		layers.add(new Background(INITIAL_WIDTH, INITIAL_HEIGHT), 1);
+		
 		layers.add(b, 0);
+		
+		//Uncomment for menu (Not complete)
+		//layers.add(new menu(BOARD_BORDER_WIDTH, BOARD_BORDER_HEIGHT, TILES_X, TILE_WIDTH, TILES_Y, TILE_HEIGHT), 0);
 		
 
 		// Adding in Timer layer
@@ -119,4 +123,58 @@ public class Game extends JPanel implements MouseListener{
 	}
 	
 	
+}
+
+class menu extends JComponent implements MouseListener {
+	menu(int BOARD_BORDER_WIDTH, int BOARD_BORDER_HEIGHT, int TILES_X, int TILE_WIDTH, int TILES_Y, int TILE_HEIGHT) {
+		setBounds(BOARD_BORDER_WIDTH, BOARD_BORDER_HEIGHT, (TILES_X * TILE_WIDTH), (TILES_Y * TILE_HEIGHT));
+		setLayout(new GridLayout(1,6));
+		add(new menuOption("Home"));
+		
+		setVisible(true);
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+}
+
+class menuOption extends JComponent {
+	menuOption(String text) {
+		JLabel optionText = new JLabel(text);
+		this.setPreferredSize(new Dimension(this.getWidth(), this.getHeight()));
+		setVisible(true);
+	}
+	
+	@Override
+	public void paintComponent(Graphics g) {
+		g.setColor(Color.RED);
+		g.fillRect(0, 0, this.getWidth(), this.getHeight());
+	}
 }

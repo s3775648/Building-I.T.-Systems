@@ -5,9 +5,10 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 
-public class Board extends JPanel implements MouseListener {
+public class Board extends JComponent implements MouseListener {
 	private final int tiles_x;
 	private final int tiles_y;
 	private final int tile_width;
@@ -25,6 +26,8 @@ public class Board extends JPanel implements MouseListener {
 	
 	private Piece sourcePiece;
 	private Piece destinationPiece;
+	
+	List<int[][][]> moves = new ArrayList<int[][][]>();
 
 	Game game;
 
@@ -88,7 +91,7 @@ public class Board extends JPanel implements MouseListener {
 		//Handles click based on if it is first or second click
 		if (clickCount == 0) {
 			sourceTile = i;
-			List<int[][][]> moves = determineMoves(sourceTile);
+			moves = determineMoves(sourceTile);
 			for(int item = 0; item < moves.size(); item++) {
 				for(int dir = 0; dir < moves.get(item).length; dir++) {
 					if(moves.get(item)[dir].length > 0) {
@@ -97,19 +100,40 @@ public class Board extends JPanel implements MouseListener {
 							int indexY = moves.get(item)[dir][move][0];
 							int indexX = moves.get(item)[dir][move][1];
 							
-							tilesArray[indexY][indexX].setSelected(true);
+							tilesArray[indexY][indexX].setHighlighted(true);
 						}
 					}
 				}
 			}
+			System.out.println("Click count set to 1");
 			clickCount = 1;
 		} else if (clickCount == 1) {
+			destinationTile = i;
+			
+			if(sourceTile == destinationTile) {
+				sourceTile.setSelected(false);
+			}
+			
+			int xx = destinationTile.getIndexX();
+			int yy = destinationTile.getIndexY();
+			
+			if(destinationTile.isHighlighted()) {
+				sourcePiece = sourceTile.getPiece();
+				destinationPiece = destinationTile.getPiece();
+				
+				sourceTile.removePiece();
+				destinationTile.removePiece();
+				destinationTile.setPiece(sourcePiece);
+				
+				System.out.println("Move is successful");
+			}
+			
 			for(int y = 0; y < tilesArray.length; y++) {
 				for(int x = 0; x < tilesArray[y].length; x++) {
-					tilesArray[y][x].setSelected(false);
+					tilesArray[y][x].setHighlighted(false);
 				}
 			}
-			destinationTile = i;
+			System.out.println("Click count set to 0");
 			clickCount = 0;
 		}	
 	}
@@ -129,15 +153,24 @@ public class Board extends JPanel implements MouseListener {
 		
 		for(int dir = 0; dir < moves.length; dir++) {
 			List<int[]> directionMoves = new ArrayList<int[]>();
+			boolean foundContact = false;
 			for(int move = 0; move < moves[dir].length; move++) {
 				//0 = Y, 1 = X
+
 				int[] newMove = new int[] {tileY + moves[dir][move][0], tileX + moves[dir][move][1]};
 				
 				if(newMove[0] > 7 || newMove[0] < 0 || newMove[1] > 7 || newMove[1] < 0) {
 					System.out.println("Invalid move"); //Add location later
 				} else {
-					directionMoves.add(newMove);
-					System.out.println("Valid move");
+					if(tilesArray[newMove[0]][newMove[1]].getPiece() != null && foundContact == false) {
+						directionMoves.add(newMove);
+						foundContact = true;
+						break;
+					}
+					
+					if(tilesArray[newMove[0]][newMove[1]].getPiece() == null) {
+						directionMoves.add(newMove);
+					}
 				}
 			}
 			int[][] directionArray = new int[directionMoves.size()][2];
