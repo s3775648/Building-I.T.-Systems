@@ -16,11 +16,18 @@ public class Tile extends JPanel {
 	private boolean isWhite; //Piece
 	private boolean isLightTile; //Tile
 	private boolean selected = false;
+	private boolean highlighted = false;
+	
 	Piece piece;
+	
+	private final int indexX;
+	private final int indexY;
 	
 	public Tile(int colour, int indexY, int indexX, int startPiece, boolean isWhite) {
 		super();
 		this.isWhite = isWhite;
+		this.indexX = indexX;
+		this.indexY = indexY;
 		createPiece(startPiece);
 		if(colour == 1) {
 			isLightTile = true;
@@ -32,6 +39,27 @@ public class Tile extends JPanel {
 	
 	public boolean isWhite() {
 		if(this.isWhite) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public int getIndexX() {
+		return indexX;
+	}
+	
+	public int getIndexY() {
+		return indexY;
+	}
+	
+	public void setHighlighted(boolean i) {
+		highlighted = i;
+		this.repaint();
+	}
+	
+	public boolean isHighlighted() {
+		if(highlighted) {
 			return true;
 		} else {
 			return false;
@@ -70,13 +98,13 @@ public class Tile extends JPanel {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		if(isLightTile()) {
-			if(isSelected()) {
+			if(isSelected() || isHighlighted()) {
 				g.setColor(lightTileColourSelected);
 			} else {
 				g.setColor(lightTileColour);
 			}
 		} else {
-			if(isSelected()) {
+			if(isSelected() || isHighlighted()) {
 				g.setColor(darkTileColourSelected);
 			} else {
 				g.setColor(darkTileColour);
@@ -121,7 +149,13 @@ public class Tile extends JPanel {
 		}
 	}
 	
-	private void setPiece(Piece i) {
+	public void setPiece(Piece i) {
 		this.piece = i;
+		this.repaint();
+	}
+	
+	public void removePiece() {
+		this.piece = null;
+		this.repaint();
 	}
 }
