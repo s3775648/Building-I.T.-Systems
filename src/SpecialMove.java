@@ -8,7 +8,7 @@ public class SpecialMove {
         int result = checkPawnEvolution(pawn, game);
         int selection = 0;
         if (result == 1 || result == 2) {
-            while (selection == 0) {
+            while (selection < 1 || selection > 5) {
                 System.out.println("Pawn Evolution Legal \n" +
                         "1 - Pawn\n" +
                         "2 - Rook\n" +
@@ -19,6 +19,7 @@ public class SpecialMove {
                 scanner.nextLine();
             }
         }
+
         return selection;
     }
 
